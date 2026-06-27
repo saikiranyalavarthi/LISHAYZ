@@ -32,7 +32,7 @@ export default function MenuSection() {
       icon: <Beef size={18} />,
     },
     {
-      name: "Sandwiches & Toasted Classics",
+      name: "Sandwiches",
       icon: <Sandwich size={18} />,
     },
     { name: "Hot Plates", icon: <CookingPot size={18} /> },
@@ -338,7 +338,11 @@ export default function MenuSection() {
 
   return (
     <section className="max-w-7xl mx-auto py-16 px-4">
-      <h2 className="text-4xl font-bold text-center mb-12">Our Menu</h2>
+      <div className="max-w-5xl mx-auto text-center">
+        {/* Badge */}
+        <div className="inline-block bg-white border-2 border-black rounded-xl px-8 py-4 shadow-[4px_4px_0px_0px_red] mb-12">
+          <h4 className="text-xl font-extrabold uppercase">Our Menu</h4>
+        </div>
 
       <div className="grid lg:grid-cols-4 gap-8">
         {/* Sidebar starts here */}
@@ -399,9 +403,7 @@ export default function MenuSection() {
                     Bestseller
                   </span>
 
-                  <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full shadow flex items-center justify-center hover:bg-red-600 hover:text-white duration-300">
-                    ❤
-                  </button>
+                
                 </div>
 
                 {/* Content */}
@@ -416,7 +418,7 @@ export default function MenuSection() {
                       </p>
                     </div>
 
-                    <span className="text-green-600 font-bold">★ 4.8</span>
+                   
                   </div>
 
                   <div className="flex justify-between items-center mt-8">
@@ -441,6 +443,7 @@ export default function MenuSection() {
             </Link>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

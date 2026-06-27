@@ -6,8 +6,8 @@ export default function AboutSection() {
     >
       <div className="max-w-5xl mx-auto text-center">
         {/* Badge */}
-        <div className="inline-block bg-white border-2 border-black rounded-xl px-8 py-4 shadow-[4px_4px_0px_0px_black] mb-12">
-          <h4 className="text-xl font-extrabold uppercase">Lishayz...</h4>
+        <div className="inline-block bg-white border-2 border-black rounded-xl px-8 py-4 shadow-[4px_4px_0px_0px_red] mb-12">
+          <h4 className="text-xl font-extrabold uppercase">About</h4>
         </div>
 
         {/* Heading */}
