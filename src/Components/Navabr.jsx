@@ -109,18 +109,16 @@
 // }
 
 import { useState, useEffect } from "react";
-import { HiMenu, HiX } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { HiMenu, HiX } from "react-icons/hi";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
+  const [scroll, setScroll] = useState(false);
 
-  // Sticky Header
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setScroll(window.scrollY > 30);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -128,240 +126,103 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Detect Active Section
-  useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        threshold: 0.45,
-      }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-
-    return () => {
-      sections.forEach((section) => observer.unobserve(section));
-    };
-  }, []);
-
-  const darkSections = ["hero"];
-
-  const isDarkHeader = darkSections.includes(activeSection);
-
-  const headerClasses = `
-fixed
-top-0
-left-0
-w-full
-z-50
-transition-all
-duration-500
-backdrop-blur-md
-${
-  isDarkHeader
-    ? "bg-transparent text-white"
-    : "bg-white text-black shadow-[0_10px_40px_rgba(220,38,38,0.45)] border-b border-red-600/30"
-}
-${isScrolled ? "py-3" : "py-5"}
-`;
-
-  const desktopBtn = `
-relative
-px-6
-py-3
-rounded-full
-border-2
-border-red-600
-text-[13px]
-font-bold
-tracking-wider
-uppercase
-transition-all
-duration-300
-shadow-[0_0_18px_rgba(220,38,38,0.35)]
-hover:bg-red-600
-hover:text-white
-hover:shadow-[0_0_35px_rgba(220,38,38,0.7)]
-hover:-translate-y-1
-${
-  isDarkHeader
-    ? "bg-white/10 text-white"
-    : "bg-white text-black"
-}
-`;
-
-  const signInBtn = `
-px-6
-py-3
-rounded-full
-bg-red-600
-border-2
-border-red-600
-text-white
-font-bold
-tracking-wider
-uppercase
-transition-all
-duration-300
-shadow-[0_0_25px_rgba(220,38,38,0.5)]
-hover:bg-red-700
-hover:shadow-[0_0_40px_rgba(220,38,38,0.8)]
-hover:-translate-y-1
-`;
+  const menuBtn = `
+    px-6
+    py-3
+    rounded-full
+    bg-white
+    border-[2px]
+    border-black
+    text-black
+    text-xs
+    font-extrabold
+    tracking-wide
+    uppercase
+    transition-all
+    duration-300
+    shadow-[3px_3px_0px_red]
+    hover:translate-x-[2px]
+    hover:translate-y-[2px]
+    hover:shadow-none
+  `;
 
   return (
-    <header className={headerClasses}>
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-10">
-
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scroll
+          ? "bg-white/80 backdrop-blur-lg py-4 shadow-lg"
+          : "bg-transparent py-6"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
         {/* Logo */}
-        <Link
-          to="/"
-          className="flex items-center gap-1 text-3xl lg:text-4xl font-black tracking-[0.25em] transition-all duration-300"
-        >
-          <span className="text-red-600 drop-shadow-[0_0_18px_rgba(220,38,38,0.8)]">
-            L
+        <Link to="/" className="text-4xl font-black tracking-[3px]">
+          <span className="text-white drop-shadow-[3px_3px_0px_#ff0055]">
+            Lish
           </span>
 
-          <span className={isDarkHeader ? "text-white" : "text-black"}>
-            ISHAYZ
-          </span>
+          <span className="text-red-500">ayz</span>
         </Link>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Menu */}
+
         <nav className="hidden lg:flex items-center gap-4">
-
-          <Link
-            to="/"
-            className={`${desktopBtn} ${
-              activeSection === "hero"
-                ? "bg-red-600 text-white shadow-[0_0_35px_rgba(220,38,38,0.8)]"
-                : ""
-            }`}
-          >
-            HOME
+          <Link to="/#menu" className={menuBtn}>
+            Home
           </Link>
 
-          <Link
-            to="/order-online"
-            className={`${desktopBtn} ${
-              activeSection === "menu"
-                ? "bg-red-600 text-white shadow-[0_0_35px_rgba(220,38,38,0.8)]"
-                : ""
-            }`}
-          >
-            ORDER ONLINE
+          <Link to="Order-Online" className={menuBtn}>
+            Order Online
           </Link>
 
-          <Link
-            to="/catering"
-            className={`${desktopBtn} ${
-              activeSection === "catering"
-                ? "bg-red-600 text-white shadow-[0_0_35px_rgba(220,38,38,0.8)]"
-                : ""
-            }`}
-          >
-            CATERING
+          <Link to="/Catering" className={menuBtn}>
+            Catering
           </Link>
-
-          <Link
-            to="/food-network"
-            className={`${desktopBtn} ${
-              activeSection === "food-network"
-                ? "bg-red-600 text-white shadow-[0_0_35px_rgba(220,38,38,0.8)]"
-                : ""
-            }`}
-          >
-            FOOD NETWORK
+          <Link to="/Food Network" className={menuBtn}>
+            Food Network
           </Link>
-
-          <Link
-            to="/signin"
-            className={signInBtn}
-          >
-            SIGN IN
+          <Link to="/Sigin" className={menuBtn}>
+            Sigin
           </Link>
-
         </nav>
 
+        {/* Mobile */}
 
-
-
-     
-
-        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`lg:hidden transition-all duration-300 ${
-            isDarkHeader ? "text-white" : "text-black"
-          }`}
+          className="lg:hidden text-white"
         >
-          {isOpen ? <HiX size={34} /> : <HiMenu size={34} />}
+          {isOpen ? <HiX size={32} /> : <HiMenu size={32} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
+
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-500 ${
-          isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        className={`lg:hidden overflow-hidden transition-all duration-300 ${
+          isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div
-          className={`mx-4 mt-4 rounded-3xl border shadow-[0_8px_30px_rgba(220,38,38,0.25)] ${
-            isDarkHeader
-              ? "bg-black border-red-600"
-              : "bg-white border-gray-200"
-          }`}
-        >
-          <div className="flex flex-col gap-4 p-6">
-
-            <Link
-              to="/"
-              onClick={() => setIsOpen(false)}
-              className="rounded-full border border-red-600 py-3 text-center font-semibold transition hover:bg-red-600 hover:text-white"
-            >
-              HOME
+        <div className="bg-white rounded-3xl mx-4 mt-4 p-5 border-2 border-red shadow-[4px_4px_0px_#991B1B]">
+          <div className="flex flex-col gap-4">
+            <Link to="/#menu" className={menuBtn}>
+              Home
             </Link>
 
-            <Link
-              to="/order-online"
-              onClick={() => setIsOpen(false)}
-              className="rounded-full border border-red-600 py-3 text-center font-semibold transition hover:bg-red-600 hover:text-white"
-            >
-              ORDER ONLINE
+            <Link to="/order-online " className={menuBtn}>
+              Order Online
             </Link>
 
-            <Link
-              to="/catering"
-              onClick={() => setIsOpen(false)}
-              className="rounded-full border border-red-600 py-3 text-center font-semibold transition hover:bg-red-600 hover:text-white"
-            >
-              CATERING
+            <Link to="/Catering" className={menuBtn}>
+              Catering
             </Link>
 
-            <Link
-              to="/food-network"
-              onClick={() => setIsOpen(false)}
-              className="rounded-full border border-red-600 py-3 text-center font-semibold transition hover:bg-red-600 hover:text-white"
-            >
-              FOOD NETWORK
+            <Link to="/Food Network" className={menuBtn}>
+              Food Network
             </Link>
-
-            <Link
-              to="/signin"
-              onClick={() => setIsOpen(false)}
-              className={signInBtn}
-            >
-              SIGN IN
+            <Link to="/Sigin" className={menuBtn}>
+              Sigin
             </Link>
-
           </div>
         </div>
       </div>
