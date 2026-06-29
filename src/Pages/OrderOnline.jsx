@@ -69,6 +69,59 @@ export default function OrderOnline() {
         { name: "Pickles", price: 1.5 },
       ],
     },
+    coffeeMilk: {
+      alternativeMilk: [
+        { name: "Full Cream", price: 0 },
+        { name: "Skim", price: 0 },
+        { name: "Soy", price: 1 },
+        { name: "Oat", price: 1 },
+        { name: "Almond", price: 1 },
+        { name: "Lactose Free", price: 1 },
+        { name: "Coconut Milk", price: 1 },
+      ],
+
+      syrups: [
+        { name: "Vanilla", price: 1 },
+        { name: "Hazelnut", price: 1 },
+        { name: "Caramel", price: 1 },
+      ],
+    },
+
+    coffeeExtraShot: {
+      extras: [{ name: "Extra Shot", price: 1 }],
+
+      alternativeMilk: [
+        { name: "Full Cream", price: 0 },
+        { name: "Skim", price: 0 },
+        { name: "Soy", price: 1 },
+        { name: "Oat", price: 1 },
+        { name: "Almond", price: 1 },
+        { name: "Lactose Free", price: 1 },
+        { name: "Coconut Milk", price: 1 },
+      ],
+
+      syrups: [
+        { name: "Vanilla", price: 1 },
+        { name: "Hazelnut", price: 1 },
+        { name: "Caramel", price: 1 },
+      ],
+    },
+    coffeeSingleExtra: {
+  extras: [
+    { name: "Extra Shot", price: 1.0 },
+  ],
+},
+coffeeMilkOnly: {
+  alternativeMilk: [
+    { name: "Full Cream", price: 0.0 },
+    { name: "Skim", price: 0.0 },
+    { name: "Soy", price: 1.0 },
+    { name: "Oat", price: 1.0 },
+    { name: "Almond", price: 1.0 },
+    { name: "Lactose Free", price: 1.0 },
+    { name: "Coconut Milk", price: 1.0 },
+  ],
+},
   };
 
   const menuData = {
@@ -115,21 +168,25 @@ export default function OrderOnline() {
             name: "Piccolo",
             description: "Single Shot Espresso + Textured Milk",
             price: "$5.00",
+            customization: "coffeeMilk",
           },
           {
             name: "Short Macchiato",
             description: "Espresso + Milk Foam",
             price: "$5.00",
+            customization: "coffeeMilk",
           },
           {
             name: "Long Macchiato",
             description: "Double Espresso + Milk Foam",
             price: "$5.50",
+            customization: "coffeeMilk",
           },
           {
             name: "Magic",
             description: "Double Ristretto + Textured Milk",
             price: "$5.50",
+            customization: "coffeeMilk",
           },
         ],
       },
@@ -159,14 +216,17 @@ export default function OrderOnline() {
           {
             name: "Hot Chocolate",
             price: "S $5.00 | M $5.50 | L $6.00",
+            customization: "coffeeExtraShot",
           },
           {
             name: "Chai Latte",
             price: "S $5.00 | M $5.50 | L $6.00",
+            customization: "coffeeExtraShot",
           },
           {
             name: "Turmeric Latte",
             price: "S $5.00 | M $5.50 | L $6.00",
+            customization: "coffeeExtraShot",
           },
           {
             name: "Mocha",
@@ -181,22 +241,27 @@ export default function OrderOnline() {
           {
             name: "Sticky Chai",
             price: "S $5.50 | M $6.00 | L $6.50",
+            customization: "coffeeExtraShot",
           },
           {
             name: "Beetroot Latte",
             price: "S $6.00 | M $6.50 | L $7.00",
+            customization: "coffeeExtraShot",
           },
           {
             name: "Red Velvet Latte",
             price: "S $6.00 | M $6.50 | L $7.00",
+            customization: "coffeeExtraShot",
           },
           {
             name: "Matcha Latte",
             price: "S $6.00 | M $6.50 | L $7.00",
+            customization: "coffeeExtraShot",
           },
           {
             name: "Hojicha Latte",
             price: "S $6.00 | M $6.50 | L $7.00",
+            customization: "coffeeExtraShot",
           },
         ],
       },
@@ -208,16 +273,44 @@ export default function OrderOnline() {
         items: [
           { name: "Iced Long Black", price: "$6.50" },
           { name: "Iced Latte", price: "$6.50" },
-          { name: "Iced Chai Latte", price: "$6.50" },
-          { name: "Iced Turmeric Latte", price: "$6.50" },
+          {
+            name: "Iced Chai Latte",
+            price: "$6.50",
+            customization: "coffeeExtraShot",
+          },
+          {
+            name: "Iced Turmeric Latte",
+            price: "$6.50",
+            customization: "coffeeExtraShot",
+          },
           { name: "Iced Mocha", price: "$7.00" },
           { name: "Iced Dirty Chai", price: "$7.00" },
-          { name: "Iced Red Velvet Latte", price: "$7.50" },
-          { name: "Iced Beetroot Latte", price: "$7.50" },
-          { name: "Iced Matcha Latte", price: "$7.50" },
-          { name: "Iced Hojicha Latte", price: "$7.50" },
-          { name: "Iced Coconut Matcha", price: "$9.00" },
-          { name: "Iced Strawberry Matcha", price: "$9.50" },
+          {
+            name: "Iced Red Velvet Latte",
+            price: "$7.50",
+            customization: "coffeeExtraShot",
+          },
+          {
+            name: "Iced Beetroot Latte",
+            price: "$7.50",
+            customization: "coffeeExtraShot",
+          },
+          {
+            name: "Iced Matcha Latte",
+            price: "$7.50",
+            customization: "coffeeExtraShot",
+          },
+          {
+            name: "Iced Hojicha Latte",
+            price: "$7.50",
+            customization: "coffeeExtraShot",
+          },
+          { name: "Iced Coconut Matcha", price: "$9.00", customization: "coffeeSingleExtra", },
+          {
+            name: "Iced Strawberry Matcha",
+            price: "$9.50",
+            customization: "coffeeExtraShot",
+          },
         ],
       },
 
@@ -228,12 +321,14 @@ export default function OrderOnline() {
             name: "Iced Coffee",
             description: "Served with Ice Cream & Whip Cream",
             price: "$9.50",
+            customization: "coffee",
           },
           {
             name: "Iced Chocolate",
             description: "Served with Ice Cream & Whip Cream",
             price: "$9.50",
-            customization: "coffee",
+
+            customization: "coffeeMilk",
           },
         ],
       },
@@ -241,19 +336,19 @@ export default function OrderOnline() {
       {
         title: "Milk Shakes",
         items: [
-          { name: "Vanilla", price: "$9.50" },
-          { name: "Caramel", price: "$9.50" },
-          { name: "Strawberry", price: "$9.50" },
-          { name: "Chocolate", price: "$9.50" },
+          { name: "Vanilla", price: "$9.50",  customization: "coffeeMilkOnly", },
+          { name: "Caramel", price: "$9.50",  customization: "coffeeMilkOnly", },
+          { name: "Strawberry", price: "$9.50",  customization: "coffeeMilkOnly", },
+          { name: "Chocolate", price: "$9.50",  customization: "coffeeMilkOnly", },
         ],
       },
 
       {
         title: "Smoothies",
         items: [
-          { name: "Banana Dream", price: "$12.90" },
-          { name: "Berry Bliss", price: "$12.90" },
-          { name: "Strawberry Crush", price: "$12.90" },
+          { name: "Banana Dream", price: "$12.90",  customization: "coffeeMilkOnly", },
+          { name: "Berry Bliss", price: "$12.90",  customization: "coffeeMilkOnly", },
+          { name: "Strawberry Crush", price: "$12.90",  customization: "coffeeMilkOnly", },
           { name: "Tropical Mango", price: "$12.90" },
           { name: "Island Pineapple", price: "$12.90" },
           { name: "Dragon Refresher", price: "$13.50" },
