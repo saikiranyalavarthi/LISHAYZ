@@ -1,16 +1,75 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
+import CustomizationModal from "../Components/CustomizationModal";
 
 export default function OrderOnline() {
-
   const [activeCategory, setActiveCategory] = useState("Hot Drinks");
   const [search, setSearch] = useState("");
 
   const [selectedSize, setSelectedSize] = useState({});
   const [cart, setCart] = useState([]);
+  const [showCustomize, setShowCustomize] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
   // ===============================
   // MENU DATA
   // ===============================
+  const customizationData = {
+    coffee: {
+      extras: [
+        { name: "Extra Shot", price: 1 },
+        { name: "Decafe", price: 1 },
+      ],
+
+      alternativeMilk: [
+        { name: "Full Cream", price: 0 },
+        { name: "Skim", price: 0 },
+        { name: "Soy", price: 1 },
+        { name: "Oat", price: 1 },
+        { name: "Almond", price: 1 },
+        { name: "Lactose Free", price: 1 },
+        { name: "Coconut Milk", price: 1 },
+      ],
+
+      syrups: [
+        { name: "Vanilla", price: 1 },
+        { name: "Hazelnut", price: 1 },
+        { name: "Caramel", price: 1 },
+      ],
+    },
+    breakfast: {
+      protein: [
+        { name: "Mini Sausage", price: 2.0 },
+        { name: "Sliced Ham", price: 3.0 },
+        { name: "Bacon 1 Rasher", price: 3.5 },
+        { name: "Bacon 2 Rasher", price: 6.0 },
+        { name: "Grilled Halloumi", price: 4.0 },
+        { name: "Smoked Salmon", price: 7.0 },
+        { name: "Beef Patty", price: 8.0 },
+        { name: "Grilled Steak", price: 12.0 },
+        {
+          name: "Chicken (Grilled / Crumbed / Southern Fried)",
+          price: 7.0,
+        },
+      ],
+
+      addOns: [
+        { name: "Mushrooms", price: 4.0 },
+        { name: "Fresh Tomato", price: 4.0 },
+        { name: "Grilled Tomato", price: 4.0 },
+        { name: "Egg Your Way", price: 3.5 },
+        { name: "Avocado", price: 3.5 },
+        { name: "Spinach", price: 3.5 },
+        { name: "Hashbrown", price: 2.2 },
+        { name: "Baked Beans", price: 2.5 },
+        { name: "Shredded Cheese", price: 2.5 },
+        { name: "Cheese Slice", price: 1.5 },
+        { name: "Pineapple", price: 1.5 },
+        { name: "Beetroot", price: 1.5 },
+        { name: "Jalapenos", price: 1.5 },
+        { name: "Pickles", price: 1.5 },
+      ],
+    },
+  };
 
   const menuData = {
     "Hot Drinks": [
@@ -85,14 +144,17 @@ export default function OrderOnline() {
           {
             name: "Flat White",
             price: "S $5.00 | M $5.50 | L $6.00",
+            customization: "coffee",
           },
           {
             name: "Latte",
             price: "S $5.00 | M $5.50 | L $6.00",
+            customization: "coffee",
           },
           {
             name: "Cappuccino",
             price: "S $5.00 | M $5.50 | L $6.00",
+            customization: "coffee",
           },
           {
             name: "Hot Chocolate",
@@ -109,10 +171,12 @@ export default function OrderOnline() {
           {
             name: "Mocha",
             price: "S $5.30 | M $5.80 | L $6.30",
+            customization: "coffee",
           },
           {
             name: "Dirty Chai",
             price: "S $5.30 | M $5.80 | L $6.30",
+            customization: "coffee",
           },
           {
             name: "Sticky Chai",
@@ -169,6 +233,7 @@ export default function OrderOnline() {
             name: "Iced Chocolate",
             description: "Served with Ice Cream & Whip Cream",
             price: "$9.50",
+            customization: "coffee",
           },
         ],
       },
@@ -239,52 +304,61 @@ export default function OrderOnline() {
             description:
               "Toasted sourdough, poached eggs, avo, bacon, tomato, onion, pesto, fetta, balsamic glaze.",
             price: "$18.90",
+            customization: "breakfast",
           },
           {
             name: "Simply Pleased",
             description:
               "2 eggs your way with bacon on toasted sourdough and relish.",
             price: "$16.50",
+            customization: "breakfast",
           },
           {
             name: "Smashed Avo",
             description:
               "Smashed avo, fetta and dukkah on sourdough drizzled with balsamic glaze.",
             price: "$15.00",
+            customization: "breakfast",
           },
           {
             name: "Eggs Benedict",
             description:
               "2 poached eggs, baby spinach, hollandaise sauce on toasted sourdough.",
             price: "$16.90",
+            customization: "breakfast",
           },
           {
             name: "Cheese Omelette",
             description:
               "Eggs, pure cream, cheese. Optional veggies: onion, cucumber, carrot.",
             price: "$15.00",
+            customization: "breakfast",
           },
           {
             name: "Eggs on Toast",
             description: "2 eggs your way on toasted sourdough with relish.",
             price: "$13.00",
+            customization: "breakfast",
           },
           {
             name: "Chicken Cheese Avo Mayo",
             description: "Choice of bread - Toasted / Untoasted.",
             price: "$12.50",
+            customization: "breakfast",
           },
           {
             name: "Loaded Brekky Wrap",
             description:
               "Bacon, hash brown, cheese, spinach, 2 scrambled eggs on tortilla wrap. Choice of sauce.",
             price: "$15.00",
+            customization: "breakfast",
           },
           {
             name: "Bacon and Egg",
             description:
               "Choice of sauce. Toasted / Untoasted. Available as Muffin, Roll, Sandwich or Turkish (+$2).",
             price: "$9.50",
+            customization: "breakfast",
           },
         ],
       },
@@ -299,36 +373,42 @@ export default function OrderOnline() {
             description:
               "Grilled halloumi, red pepper strips, tomato, lettuce, onion, tomato relish. (Burger or Wrap)",
             price: "$18.90",
+            customization: "breakfast",
           },
           {
             name: "Grilled Chicken",
             description:
               "Grilled chicken pattie with cheese, onion, tomato, lettuce, aioli. (Burger or Wrap)",
             price: "$18.90",
+            customization: "breakfast",
           },
           {
             name: "Southern Fried Chicken",
             description:
               "Southern fried chicken pattie with cheese, onion, tomato, lettuce, aioli. (Burger or Wrap)",
             price: "$18.90",
+            customization: "breakfast",
           },
           {
             name: "Spicy Fried Chicken",
             description:
               "Southern fried chicken pattie with cheese, jalapenos, onion, tomato, lettuce, spicy sauce and mayo. (Burger or Wrap)",
             price: "$18.90",
+            customization: "breakfast",
           },
           {
             name: "Cheese Burger",
             description:
               "Grilled beef pattie with double cheese. Choice of sauce.",
             price: "$15.00",
+            customization: "breakfast",
           },
           {
             name: "Traditional Beef Burger",
             description:
               "Grilled beef pattie with cheese, pickles, onion, tomato, lettuce. Choice of sauce.",
             price: "$18.90",
+            customization: "breakfast",
           },
         ],
       },
@@ -343,18 +423,21 @@ export default function OrderOnline() {
             description:
               "Grilled scotch fillet with cheese, tomato, beetroot, lettuce on Turkish bread. Choice of sauce.",
             price: "$21.90",
+            customization: "breakfast",
           },
           {
             name: "BLT (Bacon, Lettuce, Tomato)",
             description:
               "Toasted Turkish with bacon, lettuce, tomato, cheese and mayo.",
             price: "$16.00",
+            customization: "breakfast",
           },
           {
             name: "BLAT (Bacon, Lettuce, Avocado, Tomato)",
             description:
               "Toasted Turkish with bacon, lettuce, tomato, avocado, cheese and mayo.",
             price: "$18.00",
+            customization: "breakfast",
           },
         ],
       },
@@ -369,11 +452,13 @@ export default function OrderOnline() {
             description:
               "Lasagna sheets, beef, pork, diced tomato, bechamel, cheese. Add Chips +$3 | Add Salad +$3.",
             price: "$15.00",
+            customization: "breakfast",
           },
           {
             name: "BBQ Pork Riblet Plate",
             description: "BBQ pork riblets served with chips and fresh salad.",
             price: "$13.50",
+            customization: "breakfast",
           },
         ],
       },
@@ -388,6 +473,7 @@ export default function OrderOnline() {
             description:
               "Grilled halloumi, hummus, sweet potato chips, rice, cucumber, spinach, avocado, lemon wedge and glaze.",
             price: "$17.90",
+            customization: "breakfast",
           },
           {
             name: "Butter Chicken",
@@ -426,6 +512,7 @@ export default function OrderOnline() {
             description:
               "Panko fried chicken breast topped with Napoli sauce and melted shredded cheese, served with chips and salad.",
             price: "$17.00",
+            customization: "breakfast",
           },
           {
             name: "Battered Fish and Chips",
@@ -437,6 +524,7 @@ export default function OrderOnline() {
             name: "Loaded Chips and Gravy",
             description: "Fried chips topped with gravy, cheese and bacon.",
             price: "$15.00",
+            customization: "breakfast",
           },
         ],
       },
@@ -451,39 +539,43 @@ export default function OrderOnline() {
       item.name.toLowerCase().includes(search.toLowerCase()),
     ),
   }));
-
+  const openCustomization = (item) => {
+    setSelectedItem(item);
+    setShowCustomize(true);
+  };
   const handleAddToCart = (item) => {
-  if (item.price?.includes("S") && !selectedSize[item.name]) {
-    alert("Please select a size.");
-    return;
-  }
+    if (item.price?.includes("S") && !selectedSize[item.name]) {
+      alert("Please select a size.");
+      return;
+    }
 
-  const size = selectedSize[item.name] || "";
+    const size = selectedSize[item.name] || "";
 
-  setCart((prev) => {
-  const existing = prev.find(
-    (x) => x.name === item.name && x.size === size
-  );
+    setCart((prev) => {
+      const existing = prev.find(
+        (x) => x.name === item.name && x.size === size,
+      );
 
-  if (existing) {
-    return prev.map((x) =>
-      x.name === item.name && x.size === size
-        ? { ...x, quantity: x.quantity + 1 }
-        : x
-    );
-  }
+      if (existing) {
+        return prev.map((x) =>
+          x.name === item.name && x.size === size
+            ? { ...x, quantity: x.quantity + 1 }
+            : x,
+        );
+      }
 
-  return [
-    ...prev,
-    {
-      ...item,
-      size,
-      quantity: 1,
-    },
-  ];
-});
-  alert(`${item.name} Added`);
-};
+      return [
+        ...prev,
+        {
+          ...item,
+          size,
+          quantity: 1,
+        },
+      ];
+    });
+
+    alert(`${item.name} Added`);
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 pt-24 pb-10">
@@ -595,75 +687,79 @@ export default function OrderOnline() {
                           )}
                         </div>
 
-                 {
-  cart.find(
-    (cartItem) =>
-      cartItem.name === item.name &&
-      cartItem.size === (selectedSize[item.name] || "")
-  ) ? (
-    <div className="flex items-center gap-3 self-center">
-      <button
-        onClick={() => {
-          setCart((prev) =>
-            prev
-              .map((x) =>
-                x.name === item.name &&
-                x.size === (selectedSize[item.name] || "")
-                  ? { ...x, quantity: x.quantity - 1 }
-                  : x
-              )
-              .filter((x) => x.quantity > 0)
-          );
-        }}
-        className="w-9 h-9 rounded-full bg-red-600 text-white text-xl"
-      >
-        -
-      </button>
+                        {cart.find(
+                          (cartItem) =>
+                            cartItem.name === item.name &&
+                            cartItem.size === (selectedSize[item.name] || ""),
+                        ) ? (
+                          <div className="flex items-center gap-3 self-center">
+                            <button
+                              onClick={() => {
+                                setCart((prev) =>
+                                  prev
+                                    .map((x) =>
+                                      x.name === item.name &&
+                                      x.size === (selectedSize[item.name] || "")
+                                        ? { ...x, quantity: x.quantity - 1 }
+                                        : x,
+                                    )
+                                    .filter((x) => x.quantity > 0),
+                                );
+                              }}
+                              className="w-9 h-9 rounded-full bg-red-600 text-white text-xl"
+                            >
+                              -
+                            </button>
 
-      <span className="font-bold text-lg">
-        {
-          cart.find(
-            (x) =>
-              x.name === item.name &&
-              x.size === (selectedSize[item.name] || "")
-          )?.quantity
-        }
-      </span>
+                            <span className="font-bold text-lg">
+                              {
+                                cart.find(
+                                  (x) =>
+                                    x.name === item.name &&
+                                    x.size === (selectedSize[item.name] || ""),
+                                )?.quantity
+                              }
+                            </span>
 
-      <button
-        onClick={() => {
-          setCart((prev) =>
-            prev.map((x) =>
-              x.name === item.name &&
-              x.size === (selectedSize[item.name] || "")
-                ? { ...x, quantity: x.quantity + 1 }
-                : x
-            )
-          );
-        }}
-        className="w-9 h-9 rounded-full bg-red-600 text-white text-xl"
-      >
-        +
-      </button>
-    </div>
-  ) : (
-    <button
-      onClick={() => handleAddToCart(item)}
-      disabled={
-        item.price?.includes("S") &&
-        !selectedSize[item.name]
-      }
-      className={`self-center px-6 py-3 rounded-xl font-semibold transition ${
-        item.price?.includes("S") &&
-        !selectedSize[item.name]
-          ? "bg-gray-400 cursor-not-allowed text-white"
-          : "bg-red-600 hover:bg-red-700 text-white"
-      }`}
-    >
-      ADD
-    </button>
-  )
-}
+                            <button
+                              onClick={() => {
+                                setCart((prev) =>
+                                  prev.map((x) =>
+                                    x.name === item.name &&
+                                    x.size === (selectedSize[item.name] || "")
+                                      ? { ...x, quantity: x.quantity + 1 }
+                                      : x,
+                                  ),
+                                );
+                              }}
+                              className="w-9 h-9 rounded-full bg-red-600 text-white text-xl"
+                            >
+                              +
+                            </button>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              if (item.customization) {
+                                openCustomization(item);
+                              } else {
+                                handleAddToCart(item);
+                              }
+                            }}
+                            disabled={
+                              item.price?.includes("S") &&
+                              !selectedSize[item.name]
+                            }
+                            className={`self-center px-6 py-3 rounded-xl font-semibold transition ${
+                              item.price?.includes("S") &&
+                              !selectedSize[item.name]
+                                ? "bg-gray-400 cursor-not-allowed text-white"
+                                : "bg-red-600 hover:bg-red-700 text-white"
+                            }`}
+                          >
+                            ADD
+                          </button>
+                        )}
                       </div>
                     </div>
                   ))
@@ -677,6 +773,13 @@ export default function OrderOnline() {
           ))}
         </div>
       </div>
+      <CustomizationModal
+        showCustomize={showCustomize}
+        setShowCustomize={setShowCustomize}
+        selectedItem={selectedItem}
+        customizationData={customizationData}
+        handleAddToCart={handleAddToCart}
+      />
     </div>
   );
 }
