@@ -2,9 +2,12 @@ import { useState } from "react";
 import { Search } from "lucide-react";
 
 export default function OrderOnline() {
+
   const [activeCategory, setActiveCategory] = useState("Hot Drinks");
   const [search, setSearch] = useState("");
 
+  const [selectedSize, setSelectedSize] = useState({});
+  const [cart, setCart] = useState([]);
   // ===============================
   // MENU DATA
   // ===============================
@@ -331,7 +334,7 @@ export default function OrderOnline() {
       },
     ],
 
-    "Sandwiches": [
+    Sandwiches: [
       {
         title: "Sandwiches & Toasted Classics",
         items: [
@@ -449,114 +452,231 @@ export default function OrderOnline() {
     ),
   }));
 
+  const handleAddToCart = (item) => {
+  if (item.price?.includes("S") && !selectedSize[item.name]) {
+    alert("Please select a size.");
+    return;
+  }
+
+  const size = selectedSize[item.name] || "";
+
+  setCart((prev) => {
+  const existing = prev.find(
+    (x) => x.name === item.name && x.size === size
+  );
+
+  if (existing) {
+    return prev.map((x) =>
+      x.name === item.name && x.size === size
+        ? { ...x, quantity: x.quantity + 1 }
+        : x
+    );
+  }
+
+  return [
+    ...prev,
+    {
+      ...item,
+      size,
+      quantity: 1,
+    },
+  ];
+});
+  alert(`${item.name} Added`);
+};
+
   return (
-  <div className="min-h-screen bg-gray-100 pt-24 pb-10">
-    {/* Search */}
-    <div className="bg-white p-4 shadow-md sticky top-20 z-30">
-      <div className="relative max-w-xl mx-auto">
-        <Search className="absolute left-3 top-3 text-gray-400" size={20} />
-        <input
-          type="text"
-          placeholder="Search Menu..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full border border-gray-300 rounded-xl pl-10 pr-4 py-3 outline-none focus:border-red-600"
-        />
-      </div>
-    </div>
-
-    <div className="flex flex-col lg:flex-row">
-
-      {/* Sidebar */}
-      <div className="lg:w-72 w-full bg-white border-r lg:sticky lg:top-24 lg:h-[calc(100vh-96px)] overflow-y-auto">
-
-        <h2 className="text-xl font-bold p-5 border-b bg-white sticky top-0 z-20">
-          Categories
-        </h2>
-
-        <div className="flex lg:flex-col overflow-x-auto lg:overflow-x-visible">
-
-          {[ "Hot Drinks", "Iced Drinks", "Breakfasts", "Burger & Wraps", "Sandwiches", "Hot Plates", "Pub Favourites", "Bowls & Curries",
-          ].map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`flex-shrink-0 lg:w-full text-left px-6 py-4 font-medium whitespace-nowrap transition ${
-                activeCategory === cat
-                  ? "bg-red-600 text-white"
-                  : "hover:bg-red-50"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-
+    <div className="min-h-screen bg-gray-100 pt-24 pb-10">
+      {/* Search */}
+      <div className="bg-white p-4 shadow-md sticky top-20 z-30">
+        <div className="relative max-w-xl mx-auto">
+          <Search className="absolute left-3 top-3 text-gray-400" size={20} />
+          <input
+            type="text"
+            placeholder="Search Menu..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full border border-gray-300 rounded-xl pl-10 pr-4 py-3 outline-none focus:border-red-600"
+          />
         </div>
       </div>
 
-      {/* Products */}
-      <div className="flex-1 p-5 lg:p-8">
+      <div className="flex flex-col lg:flex-row">
+        {/* Sidebar */}
+        <div className="lg:w-72 w-full bg-white border-r lg:sticky lg:top-24 lg:h-[calc(100vh-96px)] overflow-y-auto">
+          <h2 className="text-xl font-bold p-5 border-b bg-white sticky top-0 z-20">
+            Categories
+          </h2>
 
-        <h1 className="text-3xl font-bold mb-8">
-          {activeCategory}
-        </h1>
-
-        {filteredSections.map((section, index) => (
-          <div key={index} className="mb-12">
-
-            <h2 className="text-2xl font-bold text-red-600 mb-6 border-b border-red-200 pb-2">
-              {section.title}
-            </h2>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
-              {section.items.length > 0 ? (
-                section.items.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition duration-300 border p-6"
-                  >
-                    <div className="flex justify-between gap-4">
-
-                      <div className="flex-1">
-
-                        <h3 className="text-xl font-bold text-gray-800">
-                          {item.name}
-                        </h3>
-
-                        {item.description && (
-                          <p className="text-gray-500 mt-3 leading-6 text-sm">
-                            {item.description}
-                          </p>
-                        )}
-
-                        <p className="text-red-600 text-xl font-bold mt-5">
-                          {item.price}
-                        </p>
-
-                      </div>
-
-                      <button className="self-center bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-semibold transition">
-                        ADD
-                      </button>
-
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="col-span-2 text-center text-gray-500 py-12">
-                  No items found.
-                </div>
-              )}
-
-            </div>
-
+          <div className="flex lg:flex-col overflow-x-auto lg:overflow-x-visible">
+            {[
+              "Hot Drinks",
+              "Iced Drinks",
+              "Breakfasts",
+              "Burger & Wraps",
+              "Sandwiches",
+              "Hot Plates",
+              "Pub Favourites",
+              "Bowls & Curries",
+            ].map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`flex-shrink-0 lg:w-full text-left px-6 py-4 font-medium whitespace-nowrap transition ${
+                  activeCategory === cat
+                    ? "bg-red-600 text-white"
+                    : "hover:bg-red-50"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
-        ))}
+        </div>
 
-      </div>
+        {/* Products */}
+        <div className="flex-1 p-5 lg:p-8">
+          <h1 className="text-3xl font-bold mb-8">{activeCategory}</h1>
 
+          {filteredSections.map((section, index) => (
+            <div key={index} className="mb-12">
+              <h2 className="text-2xl font-bold text-red-600 mb-6 border-b border-red-200 pb-2">
+                {section.title}
+              </h2>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {section.items.length > 0 ? (
+                  section.items.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition duration-300 border p-6"
+                    >
+                      <div className="flex justify-between gap-4">
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold text-gray-800">
+                            {item.name}
+                          </h3>
+
+                          {item.description && (
+                            <p className="text-gray-500 mt-3 leading-6 text-sm">
+                              {item.description}
+                            </p>
+                          )}
+
+                          {item.price?.includes("S") ? (
+                            <div className="flex flex-wrap gap-2 mt-5">
+                              {item.price.split("|").map((size, i) => {
+                                const label = size.trim().split(" ")[0];
+
+                                return (
+                                  <button
+                                    key={i}
+                                    onClick={() =>
+                                      setSelectedSize({
+                                        ...selectedSize,
+                                        [item.name]: label,
+                                      })
+                                    }
+                                    className={`px-4 py-2 rounded-full border transition ${
+                                      selectedSize[item.name] === label
+                                        ? "bg-red-600 text-white border-red-600"
+                                        : "bg-white hover:bg-red-50"
+                                    }`}
+                                  >
+                                    {size.trim()}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          ) : (
+                            <p className="text-red-600 text-xl font-bold mt-5">
+                              {item.price}
+                            </p>
+                          )}
+                        </div>
+
+                 {
+  cart.find(
+    (cartItem) =>
+      cartItem.name === item.name &&
+      cartItem.size === (selectedSize[item.name] || "")
+  ) ? (
+    <div className="flex items-center gap-3 self-center">
+      <button
+        onClick={() => {
+          setCart((prev) =>
+            prev
+              .map((x) =>
+                x.name === item.name &&
+                x.size === (selectedSize[item.name] || "")
+                  ? { ...x, quantity: x.quantity - 1 }
+                  : x
+              )
+              .filter((x) => x.quantity > 0)
+          );
+        }}
+        className="w-9 h-9 rounded-full bg-red-600 text-white text-xl"
+      >
+        -
+      </button>
+
+      <span className="font-bold text-lg">
+        {
+          cart.find(
+            (x) =>
+              x.name === item.name &&
+              x.size === (selectedSize[item.name] || "")
+          )?.quantity
+        }
+      </span>
+
+      <button
+        onClick={() => {
+          setCart((prev) =>
+            prev.map((x) =>
+              x.name === item.name &&
+              x.size === (selectedSize[item.name] || "")
+                ? { ...x, quantity: x.quantity + 1 }
+                : x
+            )
+          );
+        }}
+        className="w-9 h-9 rounded-full bg-red-600 text-white text-xl"
+      >
+        +
+      </button>
     </div>
-  </div>
-)
+  ) : (
+    <button
+      onClick={() => handleAddToCart(item)}
+      disabled={
+        item.price?.includes("S") &&
+        !selectedSize[item.name]
+      }
+      className={`self-center px-6 py-3 rounded-xl font-semibold transition ${
+        item.price?.includes("S") &&
+        !selectedSize[item.name]
+          ? "bg-gray-400 cursor-not-allowed text-white"
+          : "bg-red-600 hover:bg-red-700 text-white"
+      }`}
+    >
+      ADD
+    </button>
+  )
+}
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="col-span-2 text-center text-gray-500 py-12">
+                    No items found.
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }

@@ -140,29 +140,28 @@ export default function Navbar() {
     uppercase
     transition-all
     duration-300
-    shadow-[3px_3px_0px_red]
-    hover:translate-x-[2px]
-    hover:translate-y-[2px]
+   shadow-[3px_3px_0px_#DC2626]
+  hover:translate-x-[5px]
+hover:translate-y-[5px]
     hover:shadow-none
   `;
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scroll
-          ? "bg-white/80 backdrop-blur-lg py-4 shadow-lg"
-          : "bg-transparent py-6"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
-        {/* Logo */}
-        <Link to="/" className="text-4xl font-black tracking-[3px]">
-          <span className="text-white drop-shadow-[3px_3px_0px_#ff0055]">
-            Lish
-          </span>
-
-          <span className="text-red-500">ayz</span>
-        </Link>
+   <header
+  className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+    scroll
+      ? "bg-white/90 backdrop-blur-xl border-b-2 border-black shadow-[0_8px_0px_#DC2626]"
+      : "bg-transparent"
+  } h-20`}
+>
+  <div className="max-w-7xl mx-auto h-full flex items-center justify-between px-6">
+    <Link to="/" className="flex items-center">
+      <img
+        src="/Lishayz logo new.svg"
+        alt="Lishayz Logo"
+        className="h-12 w-auto object-contain"
+      />
+    </Link>
 
         {/* Desktop Menu */}
 
