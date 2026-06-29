@@ -1,6 +1,17 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
 import CustomizationModal from "../Components/CustomizationModal";
+import {
+  FaCoffee,
+  FaGlassWhiskey,
+  FaEgg,
+  FaHamburger,
+  FaBreadSlice,
+  FaUtensils,
+  FaDrumstickBite,
+} from "react-icons/fa";
+
+import { GiRiceCooker } from "react-icons/gi";
 
 export default function OrderOnline() {
   const [activeCategory, setActiveCategory] = useState("Hot Drinks");
@@ -13,6 +24,18 @@ export default function OrderOnline() {
   // ===============================
   // MENU DATA
   // ===============================
+
+  const categories = [
+  { name: "Hot Drinks", icon: <FaCoffee /> },
+  { name: "Iced Drinks", icon: <FaGlassWhiskey /> },
+  { name: "Breakfasts", icon: <FaEgg /> },
+  { name: "Burger & Wraps", icon: <FaHamburger /> },
+  { name: "Sandwiches", icon: <FaBreadSlice /> },
+  { name: "Hot Plates", icon: <FaUtensils /> },
+  { name: "Pub Favourites", icon: <FaDrumstickBite /> },
+{ name: "Bowls & Curries", icon: <GiRiceCooker /> },
+];
+
   const customizationData = {
     coffee: {
       extras: [
@@ -690,7 +713,7 @@ coffeeMilkOnly: {
 
       <div className="flex flex-col lg:flex-row">
         {/* Sidebar */}
-        <div className="lg:w-72 w-full bg-white border-r lg:sticky lg:top-24 lg:h-[calc(100vh-96px)] overflow-y-auto">
+        {/* <div className="lg:w-72 w-full bg-white border-r lg:sticky lg:top-24 lg:h-[calc(100vh-96px)] overflow-y-auto">
           <h2 className="text-xl font-bold p-5 border-b bg-white sticky top-0 z-20">
             Categories
           </h2>
@@ -719,7 +742,41 @@ coffeeMilkOnly: {
               </button>
             ))}
           </div>
-        </div>
+        </div> */}
+
+        <div className="lg:w-72 w-full bg-white border-r shadow-lg lg:sticky lg:top-24 lg:h-[calc(100vh-96px)] overflow-y-auto rounded-r-3xl">
+
+  <h2 className="text-2xl font-bold p-5 bg-gradient-to-r from-red-600 to-red-500 text-white sticky top-0 z-20 rounded-tr-3xl">
+    🍽 Categories
+  </h2>
+
+  <div className="flex lg:flex-col gap-2 p-3 overflow-x-auto lg:overflow-x-visible">
+
+    {categories.map((cat) => (
+      <button
+        key={cat.name}
+        onClick={() => setActiveCategory(cat.name)}
+        className={`group flex items-center gap-4 w-full px-5 py-4 rounded-2xl transition-all duration-300 ${
+          activeCategory === cat.name
+            ? "bg-red-600 text-white shadow-lg scale-[1.03]"
+            : "bg-gray-50 hover:bg-red-50 hover:text-red-600"
+        }`}
+      >
+
+        <span className="text-xl">
+          {cat.icon}
+        </span>
+
+        <span className="font-semibold">
+          {cat.name}
+        </span>
+
+      </button>
+    ))}
+
+  </div>
+
+</div>
 
         {/* Products */}
         <div className="flex-1 p-5 lg:p-8">
