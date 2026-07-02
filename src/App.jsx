@@ -1,5 +1,3 @@
-
-
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./Components/Navabr";
@@ -8,8 +6,7 @@ import Loader from "./Components/Loader";
 import Home from "./Pages/Home";
 import OrderOnline from "./Pages/OrderOnline";
 
-
-
+import Foodnetwork from "./Pages/Foodnetwork.jsx";
 
 function App() {
   return (
@@ -20,8 +17,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/order-online" element={<OrderOnline />} />
+        <Route path="/food-network" element={<Foodnetwork />} />
         {/* <Route path="/catering" element={<Catering />} />
-        <Route path="/food-network" element={<FoodNetwork />} />
+        
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/signin" element={<SignIn />} /> */}
       </Routes>
