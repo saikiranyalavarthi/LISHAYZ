@@ -216,7 +216,7 @@ hover:translate-y-[5px]
               Catering
             </Link>
 
-            <Link to="/Food Network" className={menuBtn}>
+            <Link to="/food-network" className={menuBtn}>
               Food Network
             </Link>
             <Link to="/Sigin" className={menuBtn}>
