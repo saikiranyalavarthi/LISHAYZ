@@ -1,51 +1,57 @@
-export default function GallerySection() {
-  const galleryImages = [
-    "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
-    "https://images.unsplash.com/photo-1554118811-1e0d58224f24",
-    "https://images.unsplash.com/photo-1521017432531-fbd92d768814",
-    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
-    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
-    "https://images.unsplash.com/photo-1514933651103-005eec06c04b",
+import { ArrowRight } from "lucide-react";
+
+export default function VibeSection() {
+  const images = [
+    "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800",
+    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
+    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800",
+    "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800",
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",
+    "https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=800",
   ];
 
   return (
-    <section id="gallery" className="bg-black py-14 lg:py-24">
-      <div className="max-w-7xl mx-auto px-5 lg:px-6">
+    <section id="vibe" className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
-        <div className="text-center mb-10 lg:mb-16">
-          <div className="inline-block bg-white border-2 border-white rounded-xl px-6 py-3 shadow-[4px_4px_0px_black]">
-            <h4 className="text-sm lg:text-base font-black uppercase tracking-wider">
-              GALLERY
-            </h4>
-          </div>
 
-          <h2 className="mt-6 text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-black text-white leading-tight">
-            Moments at
-            <br />
-            LISHAYZ
+        <div className="text-center">
+          <span className="inline-block bg-red-600 text-white px-5 py-2 rounded-full font-semibold">
+            VIBE
+          </span>
+
+          <h2 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-black text-gray-900">
+            Experience The
+            <span className="block text-red-600">Lishayz Vibe</span>
           </h2>
 
-          <p className="mt-5 text-gray-300 text-base lg:text-lg max-w-2xl mx-auto">
-            Explore our delicious food, cozy ambience and memorable dining
-            experiences captured through our gallery.
+          <p className="mt-6 max-w-3xl mx-auto text-lg text-gray-600 leading-8">
+            From freshly brewed coffee to delicious meals and a warm, welcoming
+            atmosphere, every visit to Lishayz is designed to create memorable
+            moments with family and friends.
           </p>
         </div>
 
         {/* Gallery */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
-          {galleryImages.map((image, index) => (
+
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-16">
+          {images.map((image, index) => (
             <div
               key={index}
-              className="overflow-hidden rounded-2xl lg:rounded-3xl shadow-lg group"
+              className="overflow-hidden rounded-3xl shadow-lg group"
             >
               <img
                 src={image}
-                alt={`Gallery ${index + 1}`}
-                className="w-full h-40 sm:h-52 lg:h-80 object-cover transition duration-700 group-hover:scale-110"
+                alt={`Vibe ${index + 1}`}
+                className="w-full h-64 object-cover transition duration-700 group-hover:scale-110"
               />
             </div>
           ))}
         </div>
+
+
+
+      
       </div>
     </section>
   );

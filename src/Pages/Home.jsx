@@ -3,8 +3,10 @@ import CateringSection from "../Components/CateringSection";
 import FoodNetworkSection from "../Components/FoodNetworkSection";
 import GallerySection from "../Components/GallerySection";
 import Hero from "../Components/Hero";
+import LocationSection from "../Components/LocationSection";
 import MenuSection from "../Components/MenuSection";
-import PartnersSection from "../Components/PartnersSection";
+import OrderOnlineSection from "../Components/OrderOnlineSection";
+// import PartnersSection from "../Components/PartnersSection";
 
 
 function Home() {
@@ -17,9 +19,10 @@ function Home() {
       <MenuSection />
       <CateringSection />
       <FoodNetworkSection />
-      <PartnersSection />
+      <OrderOnlineSection/>
+      {/* <PartnersSection /> */}
       <GallerySection />
-
+<LocationSection/>
 
     </>
   );

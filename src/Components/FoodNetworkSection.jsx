@@ -1,49 +1,127 @@
+import React from "react";
+import {
+  Hospital,
+  Building2,
+  Coffee,
+  GraduationCap,
+  FerrisWheel,
+  Factory,
+  Plane,
+  Hotel,
+  Fuel,
+  Store,
+  ShoppingCart,
+  Truck,
+  ArrowRight,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+
+const industries = [
+  {
+    title: "Aged & Residential Care",
+    icon: <Building2 size={42} />,
+  },
+  {
+    title: "Airlines & Lounges",
+    icon: <Plane size={42} />,
+  },
+  {
+    title: "Cafes & Hospitality",
+    icon: <Coffee size={42} />,
+  },
+  {
+    title: "Education & Campuses",
+    icon: <GraduationCap size={42} />,
+  },
+  {
+    title: "Entertainment & Events",
+    icon: <FerrisWheel size={42} />,
+  },
+  {
+    title: "Facilities Management",
+    icon: <Factory size={42} />,
+  },
+  {
+    title: "Hospitals & Healthcare",
+    icon: <Hospital size={42} />,
+  },
+  {
+    title: "Hotels, Pubs & Clubs",
+    icon: <Hotel size={42} />,
+  },
+  {
+    title: "Petrol & Convenience",
+    icon: <Fuel size={42} />,
+  },
+  {
+    title: "Quick Service Restaurants",
+    icon: <Store size={42} />,
+  },
+  {
+    title: "Supermarkets & Retail",
+    icon: <ShoppingCart size={42} />,
+  },
+  {
+    title: "Wholesale Distributors",
+    icon: <Truck size={42} />,
+  },
+];
+
 export default function FoodNetworkSection() {
   return (
-    <section id="food-network" className="bg-[#f8f5f0] py-14 lg:py-24">
-      <div className="max-w-7xl mx-auto px-5 lg:px-6">
+    <section className="py-24 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Heading */}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div className="text-center">
+          <span className="inline-block bg-red-600 text-white px-5 py-2 rounded-full font-semibold">
+            Food Network
+          </span>
 
-          {/* Content */}
-          <div className="order-2 lg:order-1 text-center lg:text-left">
+          <h2 className="mt-6 text-4xl md:text-5xl font-black text-gray-900">
+            Fresh Food Solutions
+          </h2>
 
-            <div className="inline-block bg-white border-2 border-black rounded-xl px-6 py-3 shadow-[4px_4px_0px_red]">
-              <h4 className="text-sm lg:text-base font-black uppercase tracking-wider">
-                FOOD NETWORK
-              </h4>
-            </div>
-
-            <h2 className="mt-6 text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-black text-black leading-tight">
-              Connecting food
-              <br />
-              lovers everywhere.
-            </h2>
-
-            <p className="mt-6 text-gray-700 text-base lg:text-lg leading-8 max-w-xl mx-auto lg:mx-0">
-              Discover our network of partner cafes, food creators and delivery
-              partners bringing delicious experiences closer to your doorstep.
-            </p>
-
-            <button className="mt-8 lg:mt-10 w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white px-8 lg:px-10 py-4 rounded-full font-bold text-base lg:text-lg transition duration-300 shadow-lg cursor-pointer">
-              EXPLORE NETWORK
-            </button>
-
-          </div>
-
-          {/* Image */}
-          <div className="order-1 lg:order-2">
-
-            <img
-              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"
-              alt="Food Network"
-              className="w-full h-72 sm:h-96 lg:h-[600px] object-cover rounded-3xl shadow-2xl"
-            />
-
-          </div>
-
+          <p className="mt-6 max-w-4xl mx-auto text-gray-600 text-lg leading-8">
+            Food Network is dedicated to supplying fresh, quality food made
+            daily for businesses, healthcare facilities and communities. Our
+            range includes freshly prepared sandwiches, wraps and granola yogurt
+            cups, designed to provide convenient, nutritious and great-tasting
+            meal options.
+          </p>
         </div>
 
+        {/* Industry Grid */}
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mt-20">
+          {industries.map((item, index) => (
+            <div
+              key={index}
+              className="group bg-white rounded-2xl p-8 shadow-md hover:shadow-xl hover:-translate-y-2 duration-300 text-center"
+            >
+              <div className="flex justify-center text-red-600 group-hover:scale-110 duration-300">
+                {item.icon}
+              </div>
+
+              <h3 className="mt-5 font-semibold text-gray-900 text-sm leading-6">
+                {item.title}
+              </h3>
+            </div>
+          ))}
+        </div>
+
+        {/* Button */}
+
+        <div className="flex justify-center mt-16">
+      
+         <Link
+  to="/food-network"
+  className="inline-flex bg-red-600 hover:bg-red-700 duration-300 text-white px-10 py-4 rounded-xl font-semibold items-center gap-3"
+>
+  EXPLORE
+  <ArrowRight size={20} />
+</Link>
+        </div>
       </div>
     </section>
   );
