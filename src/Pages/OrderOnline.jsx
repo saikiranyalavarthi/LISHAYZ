@@ -29,11 +29,11 @@ export default function OrderOnline() {
     { name: "Hot Drinks", icon: <FaCoffee /> },
     { name: "Iced Drinks", icon: <FaGlassWhiskey /> },
     { name: "Breakfasts", icon: <FaEgg /> },
+    { name: "Bowls & Curries", icon: <GiRiceCooker /> },
     { name: "Burger & Wraps", icon: <FaHamburger /> },
     { name: "Sandwiches", icon: <FaBreadSlice /> },
     { name: "Hot Plates", icon: <FaUtensils /> },
     { name: "Pub Favourites", icon: <FaDrumstickBite /> },
-    { name: "Bowls & Curries", icon: <GiRiceCooker /> },
   ];
 
   const customizationData = {
@@ -503,45 +503,6 @@ export default function OrderOnline() {
         ],
       },
     ],
-    
-    "Bowls & Curries": [
-      {
-        title: "Bowls & Curries",
-        items: [
-          {
-            name: "Buddha Bowl (Veg)",
-            description:
-              "Grilled halloumi, hummus, sweet potato chips, rice, cucumber, spinach, avocado, lemon wedge and glaze.",
-            price: "$17.90",
-            customization: "breakfast",
-          },
-          {
-            name: "Butter Chicken",
-            description:
-              "Tender grilled chicken simmered in a rich creamy house-made butter chicken curry served with rice.",
-            price: "$17.50",
-          },
-          {
-            name: "Satay Chicken Bowl",
-            description:
-              "Grilled chicken, satay sauce, salad, jasmine rice and Kewpie mayo.",
-            price: "$18.90",
-          },
-          {
-            name: "Teriyaki Chicken Bowl",
-            description:
-              "Grilled chicken, teriyaki sauce, salad, jasmine rice and Kewpie mayo.",
-            price: "$18.90",
-          },
-          {
-            name: "Katsu Chicken Bowl",
-            description:
-              "Panko fried chicken, katsu sauce, salad, jasmine rice and Kewpie mayo.",
-            price: "$18.90",
-          },
-        ],
-      },
-    ],
 
     "Burger & Wraps": [
       {
@@ -643,6 +604,45 @@ export default function OrderOnline() {
       },
     ],
 
+    "Bowls & Curries": [
+      {
+        title: "Bowls & Curries",
+        items: [
+          {
+            name: "Buddha Bowl (Veg)",
+            description:
+              "Grilled halloumi, hummus, sweet potato chips, rice, cucumber, spinach, avocado, lemon wedge and glaze.",
+            price: "$17.90",
+            customization: "breakfast",
+          },
+          {
+            name: "Butter Chicken",
+            description:
+              "Tender grilled chicken simmered in a rich creamy house-made butter chicken curry served with rice.",
+            price: "$17.50",
+          },
+          {
+            name: "Satay Chicken Bowl",
+            description:
+              "Grilled chicken, satay sauce, salad, jasmine rice and Kewpie mayo.",
+            price: "$18.90",
+          },
+          {
+            name: "Teriyaki Chicken Bowl",
+            description:
+              "Grilled chicken, teriyaki sauce, salad, jasmine rice and Kewpie mayo.",
+            price: "$18.90",
+          },
+          {
+            name: "Katsu Chicken Bowl",
+            description:
+              "Panko fried chicken, katsu sauce, salad, jasmine rice and Kewpie mayo.",
+            price: "$18.90",
+          },
+        ],
+      },
+    ],
+
     "Pub Favourites": [
       {
         title: "Pub Favourites",
@@ -680,9 +680,14 @@ export default function OrderOnline() {
     ),
   }));
   const openCustomization = (item) => {
-    setSelectedItem(item);
-    setShowCustomize(true);
-  };
+  if (item.price?.includes("S") && !selectedSize[item.name]) {
+    alert("Please select a size.");
+    return;
+  }
+
+  setSelectedItem(item);
+  setShowCustomize(true);
+};
   const handleAddToCart = (item) => {
     if (item.price?.includes("S") && !selectedSize[item.name]) {
       alert("Please select a size.");
@@ -715,6 +720,8 @@ export default function OrderOnline() {
     });
 
     alert(`${item.name} Added`);
+   
+
   };
 
   return (
