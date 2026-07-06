@@ -349,7 +349,7 @@ return (
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+  <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
 
         {/* Categories */}
         <div className="lg:bg-white lg:rounded-2xl lg:shadow-xl lg:p-6 lg:sticky lg:top-24 lg:h-fit">
@@ -379,7 +379,7 @@ return (
         </div>
 
         {/* Products */}
-        <div className="lg:col-span-3">
+   <div className="lg:col-span-4">
 
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
 
@@ -401,7 +401,7 @@ return (
 
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
             {products.slice(0, 4).map((item) => (
               <div

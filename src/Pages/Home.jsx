@@ -6,7 +6,7 @@ import Hero from "../Components/Hero";
 import LocationSection from "../Components/LocationSection";
 import MenuSection from "../Components/MenuSection";
 import OrderOnlineSection from "../Components/OrderOnlineSection";
-// import PartnersSection from "../Components/PartnersSection";
+import PartnersSection from "../Components/PartnersSection";
 
 
 function Home() {
@@ -20,7 +20,7 @@ function Home() {
       <CateringSection />
       <FoodNetworkSection />
       <OrderOnlineSection/>
-      {/* <PartnersSection /> */}
+      <PartnersSection />
       <GallerySection />
 <LocationSection/>
 

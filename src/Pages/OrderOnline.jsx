@@ -26,15 +26,15 @@ export default function OrderOnline() {
   // ===============================
 
   const categories = [
-  { name: "Hot Drinks", icon: <FaCoffee /> },
-  { name: "Iced Drinks", icon: <FaGlassWhiskey /> },
-  { name: "Breakfasts", icon: <FaEgg /> },
-  { name: "Burger & Wraps", icon: <FaHamburger /> },
-  { name: "Sandwiches", icon: <FaBreadSlice /> },
-  { name: "Hot Plates", icon: <FaUtensils /> },
-  { name: "Pub Favourites", icon: <FaDrumstickBite /> },
-{ name: "Bowls & Curries", icon: <GiRiceCooker /> },
-];
+    { name: "Hot Drinks", icon: <FaCoffee /> },
+    { name: "Iced Drinks", icon: <FaGlassWhiskey /> },
+    { name: "Breakfasts", icon: <FaEgg /> },
+    { name: "Burger & Wraps", icon: <FaHamburger /> },
+    { name: "Sandwiches", icon: <FaBreadSlice /> },
+    { name: "Hot Plates", icon: <FaUtensils /> },
+    { name: "Pub Favourites", icon: <FaDrumstickBite /> },
+    { name: "Bowls & Curries", icon: <GiRiceCooker /> },
+  ];
 
   const customizationData = {
     coffee: {
@@ -130,21 +130,19 @@ export default function OrderOnline() {
       ],
     },
     coffeeSingleExtra: {
-  extras: [
-    { name: "Extra Shot", price: 1.0 },
-  ],
-},
-coffeeMilkOnly: {
-  alternativeMilk: [
-    { name: "Full Cream", price: 0.0 },
-    { name: "Skim", price: 0.0 },
-    { name: "Soy", price: 1.0 },
-    { name: "Oat", price: 1.0 },
-    { name: "Almond", price: 1.0 },
-    { name: "Lactose Free", price: 1.0 },
-    { name: "Coconut Milk", price: 1.0 },
-  ],
-},
+      extras: [{ name: "Extra Shot", price: 1.0 }],
+    },
+    coffeeMilkOnly: {
+      alternativeMilk: [
+        { name: "Full Cream", price: 0.0 },
+        { name: "Skim", price: 0.0 },
+        { name: "Soy", price: 1.0 },
+        { name: "Oat", price: 1.0 },
+        { name: "Almond", price: 1.0 },
+        { name: "Lactose Free", price: 1.0 },
+        { name: "Coconut Milk", price: 1.0 },
+      ],
+    },
   };
 
   const menuData = {
@@ -328,7 +326,11 @@ coffeeMilkOnly: {
             price: "$7.50",
             customization: "coffeeExtraShot",
           },
-          { name: "Iced Coconut Matcha", price: "$9.00", customization: "coffeeSingleExtra", },
+          {
+            name: "Iced Coconut Matcha",
+            price: "$9.00",
+            customization: "coffeeSingleExtra",
+          },
           {
             name: "Iced Strawberry Matcha",
             price: "$9.50",
@@ -359,19 +361,39 @@ coffeeMilkOnly: {
       {
         title: "Milk Shakes",
         items: [
-          { name: "Vanilla", price: "$9.50",  customization: "coffeeMilkOnly", },
-          { name: "Caramel", price: "$9.50",  customization: "coffeeMilkOnly", },
-          { name: "Strawberry", price: "$9.50",  customization: "coffeeMilkOnly", },
-          { name: "Chocolate", price: "$9.50",  customization: "coffeeMilkOnly", },
+          { name: "Vanilla", price: "$9.50", customization: "coffeeMilkOnly" },
+          { name: "Caramel", price: "$9.50", customization: "coffeeMilkOnly" },
+          {
+            name: "Strawberry",
+            price: "$9.50",
+            customization: "coffeeMilkOnly",
+          },
+          {
+            name: "Chocolate",
+            price: "$9.50",
+            customization: "coffeeMilkOnly",
+          },
         ],
       },
 
       {
         title: "Smoothies",
         items: [
-          { name: "Banana Dream", price: "$12.90",  customization: "coffeeMilkOnly", },
-          { name: "Berry Bliss", price: "$12.90",  customization: "coffeeMilkOnly", },
-          { name: "Strawberry Crush", price: "$12.90",  customization: "coffeeMilkOnly", },
+          {
+            name: "Banana Dream",
+            price: "$12.90",
+            customization: "coffeeMilkOnly",
+          },
+          {
+            name: "Berry Bliss",
+            price: "$12.90",
+            customization: "coffeeMilkOnly",
+          },
+          {
+            name: "Strawberry Crush",
+            price: "$12.90",
+            customization: "coffeeMilkOnly",
+          },
           { name: "Tropical Mango", price: "$12.90" },
           { name: "Island Pineapple", price: "$12.90" },
           { name: "Dragon Refresher", price: "$13.50" },
@@ -481,6 +503,45 @@ coffeeMilkOnly: {
         ],
       },
     ],
+    
+    "Bowls & Curries": [
+      {
+        title: "Bowls & Curries",
+        items: [
+          {
+            name: "Buddha Bowl (Veg)",
+            description:
+              "Grilled halloumi, hummus, sweet potato chips, rice, cucumber, spinach, avocado, lemon wedge and glaze.",
+            price: "$17.90",
+            customization: "breakfast",
+          },
+          {
+            name: "Butter Chicken",
+            description:
+              "Tender grilled chicken simmered in a rich creamy house-made butter chicken curry served with rice.",
+            price: "$17.50",
+          },
+          {
+            name: "Satay Chicken Bowl",
+            description:
+              "Grilled chicken, satay sauce, salad, jasmine rice and Kewpie mayo.",
+            price: "$18.90",
+          },
+          {
+            name: "Teriyaki Chicken Bowl",
+            description:
+              "Grilled chicken, teriyaki sauce, salad, jasmine rice and Kewpie mayo.",
+            price: "$18.90",
+          },
+          {
+            name: "Katsu Chicken Bowl",
+            description:
+              "Panko fried chicken, katsu sauce, salad, jasmine rice and Kewpie mayo.",
+            price: "$18.90",
+          },
+        ],
+      },
+    ],
 
     "Burger & Wraps": [
       {
@@ -577,45 +638,6 @@ coffeeMilkOnly: {
             description: "BBQ pork riblets served with chips and fresh salad.",
             price: "$13.50",
             customization: "breakfast",
-          },
-        ],
-      },
-    ],
-
-    "Bowls & Curries": [
-      {
-        title: "Bowls & Curries",
-        items: [
-          {
-            name: "Buddha Bowl (Veg)",
-            description:
-              "Grilled halloumi, hummus, sweet potato chips, rice, cucumber, spinach, avocado, lemon wedge and glaze.",
-            price: "$17.90",
-            customization: "breakfast",
-          },
-          {
-            name: "Butter Chicken",
-            description:
-              "Tender grilled chicken simmered in a rich creamy house-made butter chicken curry served with rice.",
-            price: "$17.50",
-          },
-          {
-            name: "Satay Chicken Bowl",
-            description:
-              "Grilled chicken, satay sauce, salad, jasmine rice and Kewpie mayo.",
-            price: "$18.90",
-          },
-          {
-            name: "Teriyaki Chicken Bowl",
-            description:
-              "Grilled chicken, teriyaki sauce, salad, jasmine rice and Kewpie mayo.",
-            price: "$18.90",
-          },
-          {
-            name: "Katsu Chicken Bowl",
-            description:
-              "Panko fried chicken, katsu sauce, salad, jasmine rice and Kewpie mayo.",
-            price: "$18.90",
           },
         ],
       },
@@ -745,38 +767,28 @@ coffeeMilkOnly: {
         </div> */}
 
         <div className="lg:w-72 w-full bg-white border-r shadow-lg lg:sticky lg:top-24 lg:h-[calc(100vh-96px)] overflow-y-auto rounded-r-3xl">
+          <h2 className="text-2xl font-bold p-5 bg-gradient-to-r from-red-600 to-red-500 text-white sticky top-0 z-20 rounded-tr-3xl">
+            🍽 Categories
+          </h2>
 
-  <h2 className="text-2xl font-bold p-5 bg-gradient-to-r from-red-600 to-red-500 text-white sticky top-0 z-20 rounded-tr-3xl">
-    🍽 Categories
-  </h2>
+          <div className="flex lg:flex-col gap-2 p-3 overflow-x-auto lg:overflow-x-visible">
+            {categories.map((cat) => (
+              <button
+                key={cat.name}
+                onClick={() => setActiveCategory(cat.name)}
+                className={`group flex items-center gap-4 w-full px-5 py-4 rounded-2xl transition-all duration-300 ${
+                  activeCategory === cat.name
+                    ? "bg-red-600 text-white shadow-lg scale-[1.03]"
+                    : "bg-gray-50 hover:bg-red-50 hover:text-red-600"
+                }`}
+              >
+                <span className="text-xl">{cat.icon}</span>
 
-  <div className="flex lg:flex-col gap-2 p-3 overflow-x-auto lg:overflow-x-visible">
-
-    {categories.map((cat) => (
-      <button
-        key={cat.name}
-        onClick={() => setActiveCategory(cat.name)}
-        className={`group flex items-center gap-4 w-full px-5 py-4 rounded-2xl transition-all duration-300 ${
-          activeCategory === cat.name
-            ? "bg-red-600 text-white shadow-lg scale-[1.03]"
-            : "bg-gray-50 hover:bg-red-50 hover:text-red-600"
-        }`}
-      >
-
-        <span className="text-xl">
-          {cat.icon}
-        </span>
-
-        <span className="font-semibold">
-          {cat.name}
-        </span>
-
-      </button>
-    ))}
-
-  </div>
-
-</div>
+                <span className="font-semibold">{cat.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* Products */}
         <div className="flex-1 p-5 lg:p-8">
