@@ -24,7 +24,6 @@
 //     </section>
 //   );
 // }
-
 import { ArrowRight } from "lucide-react";
 
 export default function AboutSection() {
@@ -33,42 +32,45 @@ export default function AboutSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left */}
-
           <div>
-            <span className="inline-block bg-red-600 text-white px-5 py-2 rounded-full font-semibold">
+            {/* Eyebrow */}
+            <span className="inline-block bg-black text-white px-5 py-2 rounded-full font-semibold tracking-wide uppercase">
               About Lishayz
             </span>
 
+            {/* Heading */}
             <h2 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
               Fresh Coffee,
-              <span className="block text-red-600">Delicious Meals</span>& Warm
-              Hospitality
+              <span className="block text-gray-800">Delicious Meals</span>
+              <span className="block text-gray-900">& Warm Hospitality</span>
             </h2>
 
+            {/* Description */}
             <p className="mt-8 text-gray-600 text-lg leading-8">
-              At <strong>Lishayz</strong>, we take pride in serving quality
-              coffee, delicious meals, and providing a welcoming experience for
-              every customer.
+              At <strong className="text-black">Lishayz</strong>, we take pride
+              in serving premium coffee, handcrafted meals, and creating a warm,
+              welcoming atmosphere for every guest.
             </p>
 
             <p className="mt-5 text-gray-600 text-lg leading-8">
-              While keeping our favourites on the menu, we also love introducing
-              new flavours and seasonal specials from time to time.
+              From signature favourites to exciting seasonal specials, every
+              dish and beverage is prepared with fresh ingredients and genuine
+              care.
             </p>
 
             <p className="mt-5 text-gray-600 text-lg leading-8">
-              With a strong focus on cleanliness, quality, and friendly service,
-              we're here to make every visit a great one.
+              Our commitment to quality, cleanliness, and exceptional customer
+              service ensures that every visit is a memorable dining experience.
             </p>
 
-            <button className="mt-10 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl flex items-center gap-3 duration-300">
+            {/* Button */}
+            <button className="mt-10 bg-black hover:bg-gray-900 text-white px-8 py-4 rounded-xl flex items-center gap-3 transition-all duration-300 hover:translate-x-1">
               Learn More
               <ArrowRight size={20} />
             </button>
           </div>
 
           {/* Right */}
-
           <div className="relative">
             <img
               src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1000"
@@ -76,10 +78,11 @@ export default function AboutSection() {
               className="rounded-3xl shadow-2xl w-full h-[600px] object-cover"
             />
 
+            {/* Experience Card */}
             <div className="absolute -bottom-8 -left-8 bg-black text-white p-8 rounded-2xl shadow-xl">
-              <h3 className="text-4xl font-bold text-red-500">10+</h3>
+              <h3 className="text-4xl font-bold text-amber-400">10+</h3>
 
-              <p className="mt-2">
+              <p className="mt-2 text-gray-200">
                 Years of
                 <br />
                 Great Taste

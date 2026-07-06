@@ -107,10 +107,9 @@
 //     </header>
 //   );
 // }
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { HiMenu, HiX } from "react-icons/hi";
+import { HiMenu, HiX, HiShoppingCart } from "react-icons/hi";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -130,101 +129,155 @@ export default function Navbar() {
     px-6
     py-3
     rounded-full
-    bg-white
-    border-[2px]
-    border-black
-    text-black
+    bg-black
+    border-2
+    border-red-600
+    text-white
     text-xs
     font-extrabold
     tracking-wide
     uppercase
     transition-all
     duration-300
-   shadow-[3px_3px_0px_#DC2626]
-  hover:translate-x-[5px]
-hover:translate-y-[5px]
-    hover:shadow-none
+    hover:bg-red-600
+    hover:border-red-600
+    hover:text-white
   `;
 
   return (
-   <header
-  className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-    scroll
-      ? "bg-white/90 backdrop-blur-xl border-b-2 border-black shadow-[0_8px_0px_#DC2626]"
-      : "bg-transparent"
-  } h-20`}
->
-  <div className="max-w-7xl mx-auto h-full flex items-center justify-between px-6">
-    <Link to="/" className="flex items-center">
-      <img
-        src="/Lishayz logo new.svg"
-        alt="Lishayz Logo"
-        className="h-12 w-auto object-contain"
-      />
-    </Link>
-
-        {/* Desktop Menu */}
-
-        <nav className="hidden lg:flex items-center gap-4">
-          <Link to="/#menu" className={menuBtn}>
-            Home
-          </Link>
-
-          <Link to="Order-Online" className={menuBtn}>
-            Order Online
-          </Link>
-
-          <Link to="/Catering" className={menuBtn}>
-            Catering
-          </Link>
-          <Link to="/food-network" className={menuBtn}>
-            Food Network
-          </Link>
-          <Link to="/Sigin" className={menuBtn}>
-            Sigin
-          </Link>
-        </nav>
-
-        {/* Mobile */}
-
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden text-white"
-        >
-          {isOpen ? <HiX size={32} /> : <HiMenu size={32} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-
-      <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 ${
-          isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
-        }`}
+    <>
+      {/* Header */}
+      <header
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+          scroll
+            ? "bg-black/95 backdrop-blur-xl border-b border-red-600 shadow-lg"
+            : "bg-black"
+        } h-20`}
       >
-        <div className="bg-white rounded-3xl mx-4 mt-4 p-5 border-2 border-red shadow-[4px_4px_0px_#991B1B]">
-          <div className="flex flex-col gap-4">
-            <Link to="/#menu" className={menuBtn}>
-              Home
-            </Link>
+        <div className="max-w-7xl mx-auto h-full flex items-center justify-between px-6">
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <img
+              src="/Lishayz logo new.svg"
+              alt="Lishayz Logo"
+              className="h-12 w-auto object-contain"
+            />
+          </Link>
 
-            <Link to="/order-online " className={menuBtn}>
-              Order Online
-            </Link>
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center gap-5">
+            <nav className="flex items-center gap-4">
+              <Link to="/" className={menuBtn}>
+                Home
+              </Link>
 
-            <Link to="/Catering" className={menuBtn}>
-              Catering
-            </Link>
+              <Link to="/order-online" className={menuBtn}>
+                Order Online
+              </Link>
 
-            <Link to="/food-network" className={menuBtn}>
-              Food Network
-            </Link>
-            <Link to="/Sigin" className={menuBtn}>
-              Sigin
+              <Link to="/catering" className={menuBtn}>
+                Catering
+              </Link>
+
+              <Link to="/food-network" className={menuBtn}>
+                Food Network
+              </Link>
+
+              <Link to="/signin" className={menuBtn}>
+                Sign In
+              </Link>
+            </nav>
+
+            {/* Cart */}
+            <Link
+              to="/cart"
+              className="relative flex items-center justify-center w-12 h-12 rounded-full bg-red-600 text-white hover:bg-red-700 transition"
+            >
+              <HiShoppingCart size={24} />
+              <span className="absolute -top-1 -right-1 bg-white text-red-600 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                0
+              </span>
             </Link>
           </div>
+
+          {/* Mobile Actions */}
+          <div className="flex items-center gap-3 lg:hidden">
+            {/* Mobile Cart */}
+            <Link
+              to="/cart"
+              className="relative flex items-center justify-center w-10 h-10 rounded-full bg-red-600 text-white"
+            >
+              <HiShoppingCart size={22} />
+              <span className="absolute -top-1 -right-1 bg-white text-red-600 text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                0
+              </span>
+            </Link>
+
+            {/* Menu Button */}
+            <button onClick={() => setIsOpen(!isOpen)} className="text-white">
+              {isOpen ? <HiX size={32} /> : <HiMenu size={32} />}
+            </button>
+          </div>
         </div>
-      </div>
-    </header>
+
+        {/* Mobile Menu */}
+        <div
+          className={`lg:hidden overflow-hidden transition-all duration-300 ${
+            isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="bg-black mx-4 mt-4 rounded-3xl border-2 border-red-600 shadow-lg p-5">
+            <div className="flex flex-col gap-4">
+              <Link to="/" className={menuBtn} onClick={() => setIsOpen(false)}>
+                Home
+              </Link>
+
+              <Link
+                to="/order-online"
+                className={menuBtn}
+                onClick={() => setIsOpen(false)}
+              >
+                Order Online
+              </Link>
+
+              <Link
+                to="/catering"
+                className={menuBtn}
+                onClick={() => setIsOpen(false)}
+              >
+                Catering
+              </Link>
+
+              <Link
+                to="/food-network"
+                className={menuBtn}
+                onClick={() => setIsOpen(false)}
+              >
+                Food Network
+              </Link>
+
+              <Link
+                to="/signin"
+                className={menuBtn}
+                onClick={() => setIsOpen(false)}
+              >
+                Sign In
+              </Link>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Floating Sticky Cart */}
+      <Link
+        to="/cart"
+        className="fixed bottom-6 right-6 z-[9999] flex items-center justify-center w-16 h-16 rounded-full bg-red-600 text-white shadow-2xl hover:scale-110 transition-all duration-300"
+      >
+        <HiShoppingCart size={30} />
+        <span className="absolute -top-1 -right-1 bg-white text-red-600 text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
+          0
+        </span>
+      </Link>
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function VibeSection() {
   const images = [
@@ -14,15 +15,14 @@ export default function VibeSection() {
     <section id="vibe" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
-
         <div className="text-center">
-          <span className="inline-block bg-red-600 text-white px-5 py-2 rounded-full font-semibold">
-            VIBE
+          <span className="inline-block bg-black text-white px-5 py-2 rounded-full font-semibold">
+            GALLERY
           </span>
 
           <h2 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-black text-gray-900">
             Experience The
-            <span className="block text-red-600">Lishayz Vibe</span>
+            <span className="block text-gray-700">Lishayz Vibe</span>
           </h2>
 
           <p className="mt-6 max-w-3xl mx-auto text-lg text-gray-600 leading-8">
@@ -33,7 +33,6 @@ export default function VibeSection() {
         </div>
 
         {/* Gallery */}
-
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-16">
           {images.map((image, index) => (
             <div
@@ -49,9 +48,16 @@ export default function VibeSection() {
           ))}
         </div>
 
-
-
-      
+        {/* View Gallery Button */}
+        <div className="flex justify-center mt-14">
+          <Link
+            to="/gallery"
+            className="inline-flex items-center gap-3 bg-black hover:bg-gray-900 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:translate-x-1"
+          >
+            View Gallery
+            <ArrowRight size={20} />
+          </Link>
+        </div>
       </div>
     </section>
   );
