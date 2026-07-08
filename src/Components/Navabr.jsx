@@ -189,7 +189,7 @@ export default function Navbar() {
             </nav>
 
             {/* Cart */}
-            <Link
+            {/* <Link
               to="/cart"
               className="relative flex items-center justify-center w-12 h-12 rounded-full bg-red-600 text-white hover:bg-red-700 transition"
             >
@@ -197,7 +197,7 @@ export default function Navbar() {
               <span className="absolute -top-1 -right-1 bg-white text-red-600 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
                 0
               </span>
-            </Link>
+            </Link> */}
           </div>
 
           {/* Mobile Actions */}
@@ -269,7 +269,7 @@ export default function Navbar() {
       </header>
 
       {/* Floating Sticky Cart */}
-      <Link
+      {/* <Link
         to="/cart"
         className="fixed bottom-6 right-6 z-[9999] flex items-center justify-center w-16 h-16 rounded-full bg-red-600 text-white shadow-2xl hover:scale-110 transition-all duration-300"
       >
@@ -277,7 +277,7 @@ export default function Navbar() {
         <span className="absolute -top-1 -right-1 bg-white text-red-600 text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
           0
         </span>
-      </Link>
+      </Link> */}
     </>
   );
 }
