@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-
 export default function MenuSection() {
   const [activeCategory, setActiveCategory] = useState("Hot Drinks");
 
@@ -159,7 +158,7 @@ export default function MenuSection() {
       },
     ],
 
-    "Sandwiches": [
+    Sandwiches: [
       {
         id: 1,
         image:
@@ -336,137 +335,120 @@ export default function MenuSection() {
   };
 
   const products = menu[activeCategory] || [];
-return (
-  <section className="max-w-7xl mx-auto py-12 lg:py-16 px-4">
-    <div className="max-w-7xl mx-auto">
-
-      {/* Heading */}
-      <div className="text-center mb-10">
-        <div className="inline-block bg-white border-2 border-black rounded-xl px-8 py-4 shadow-[4px_4px_0px_0px_red]">
-          <h4 className="text-lg lg:text-xl font-extrabold uppercase">
-            Our Menu
-          </h4>
-        </div>
-      </div>
-
-  <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-
-        {/* Categories */}
-        <div className="lg:bg-white lg:rounded-2xl lg:shadow-xl lg:p-6 lg:sticky lg:top-24 lg:h-fit">
-
-          <h3 className="hidden lg:block text-xl font-bold mb-6">
-            Categories
-          </h3>
-
-          <div className="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-2 scrollbar-hide">
-
-            {categories.map((cat) => (
-              <button
-                key={cat.name}
-                onClick={() => setActiveCategory(cat.name)}
-                className={`flex-shrink-0 lg:w-full flex items-center justify-center lg:justify-start gap-2 px-5 py-3 rounded-xl font-semibold transition cursor-pointer ${
-                  activeCategory === cat.name
-                    ? "bg-red-600 text-white"
-                    : "bg-gray-100 hover:bg-red-50"
-                }`}
-              >
-                {cat.icon}
-                <span className="whitespace-nowrap">{cat.name}</span>
-              </button>
-            ))}
-
+  return (
+    <section className="max-w-7xl mx-auto py-12 lg:py-16 px-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Heading */}
+        <div className="text-center mb-10">
+          <div className="inline-block bg-white border-2 border-black rounded-xl px-8 py-4 shadow-[4px_4px_0px_0px_red]">
+            <h4 className="text-lg lg:text-xl font-extrabold uppercase">
+              Our Menu
+            </h4>
           </div>
         </div>
 
-        {/* Products */}
-   <div className="lg:col-span-4">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+          {/* Categories */}
+          <div className="lg:bg-white lg:rounded-2xl lg:shadow-xl lg:p-6 lg:sticky lg:top-24 lg:h-fit">
+            <h3 className="hidden lg:block text-xl font-bold mb-6">
+              Categories
+            </h3>
 
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
+            <div className="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-2 scrollbar-hide">
+              {categories.map((cat) => (
+                <button
+                  key={cat.name}
+                  onClick={() => setActiveCategory(cat.name)}
+                  className={`flex-shrink-0 lg:w-full flex items-center justify-center lg:justify-start gap-2 px-5 py-3 rounded-xl font-semibold transition cursor-pointer ${
+                    activeCategory === cat.name
+                      ? "bg-red-600 text-white"
+                      : "bg-gray-100 hover:bg-red-50"
+                  }`}
+                >
+                  {cat.icon}
+                  <span className="whitespace-nowrap">{cat.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
 
-            <div>
-              <h2 className="text-2xl lg:text-4xl font-bold">
-                {activeCategory}
-              </h2>
+          {/* Products */}
+          {/* Products */}
+          <div className="lg:col-span-4">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
+              <div>
+                <h2 className="text-2xl lg:text-4xl font-bold">
+                  {activeCategory}
+                </h2>
 
-              <p className="text-gray-500 mt-2">
-                Freshly prepared with premium ingredients
-              </p>
+                <p className="text-gray-500 mt-2">
+                  Freshly prepared with premium ingredients
+                </p>
+              </div>
+
+              <Link to="/order-online">
+                <button className="w-full lg:w-auto px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold transition">
+                  View Full Menu
+                </button>
+              </Link>
             </div>
 
-            <Link to="/order-online">
-              <button className="w-full lg:w-auto px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold transition cursor-pointer">
-                View Full Menu
-              </button>
-            </Link>
+            {/* Show ALL Products */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {products.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full"
+                >
+                  {/* Image */}
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-60 object-cover group-hover:scale-110 duration-500"
+                    />
 
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-            {products.slice(0, 4).map((item) => (
-              <div
-                key={item.id}
-                className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
-              >
-
-                <div className="relative overflow-hidden">
-
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-52 lg:h-60 object-cover group-hover:scale-110 duration-500"
-                  />
-
-                  <span className="absolute top-4 left-4 bg-green-600 text-white text-xs px-3 py-1 rounded-full">
-                    Bestseller
-                  </span>
-
-                </div>
-
-                <div className="p-5 lg:p-6">
-
-                  <h3 className="text-xl lg:text-2xl font-bold">
-                    {item.name}
-                  </h3>
-
-                  <p className="text-gray-500 mt-3 leading-7 text-sm lg:text-base">
-                    {item.desc}
-                  </p>
-
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mt-6">
-
-                    <h4 className="text-red-600 text-2xl font-bold">
-                      {item.price}
-                    </h4>
-
-                    <button className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-xl font-semibold shadow-lg transition cursor-pointer">
-                      ADD
-                    </button>
-
+                    <span className="absolute top-4 left-4 bg-green-600 text-white text-xs px-3 py-1 rounded-full">
+                      Bestseller
+                    </span>
                   </div>
 
+                  {/* Content */}
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3 className="text-xl font-bold min-h-[60px]">
+                      {item.name}
+                    </h3>
+
+                    <p className="text-gray-500 mt-3 text-sm leading-6 flex-1">
+                      {item.desc}
+                    </p>
+
+                    {/* Bottom */}
+                    <div className="mt-6 flex items-center justify-between">
+                      <h4 className="text-red-600 text-2xl font-bold">
+                        {item.price}
+                      </h4>
+
+                      <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-semibold transition">
+                        ADD
+                      </button>
+                    </div>
+                  </div>
                 </div>
+              ))}
+            </div>
 
-              </div>
-            ))}
-
+            {/* Explore Button */}
+            <div className="mt-10 text-center">
+              <Link to="/order-online">
+                <button className="border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white transition px-8 py-3 rounded-xl font-semibold">
+                  Explore Full Menu
+                </button>
+              </Link>
+            </div>
           </div>
-
-          <div className="mt-10 text-center">
-
-            <Link to="/order-online">
-              <button className="w-full sm:w-auto border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white transition px-8 py-3 rounded-xl font-semibold cursor-pointer">
-                Explore Full Menu
-              </button>
-            </Link>
-
-          </div>
-
         </div>
-
       </div>
-
-    </div>
-  </section>
-)
+    </section>
+  );
 }
